@@ -43,9 +43,15 @@ body {
 }
 
 #display {
+    padding: 5%;
     width: 100%;
     height: 20%;
     background-color: #e2e8f0;
+    color: #0d172a;
+    font-size: 3em;
+    display: flex;
+    align-items: center;
+    flex-flow: row-reverse nowrap;
 }
 
 #controls {
