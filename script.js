@@ -16,7 +16,9 @@ function buttonClicked(e) {
             if (input == '0') return
             dataEntered = true;
             currentNumber = input;
-        } else if (dataEntered) currentNumber += input;
+        } else if (dataEntered && currentNumber <= Number.MAX_SAFE_INTEGER && currentNumber >= Number.MIN_SAFE_INTEGER) {
+            currentNumber += input;
+        };
         updateDisplay();
     } else if (operators.includes(input)) {
         calculateData(input);
@@ -31,6 +33,10 @@ function calculateData(operator) {
             break;
         case 'plus-minus':
             negateNumber();
+            updateDisplay();
+            break;
+        case 'percentage':
+            makePercentage();
             updateDisplay();
             break;
         default:
@@ -49,6 +55,12 @@ function negateNumber() {
 }
 
 function updateDisplay() {
-    numberField.innerText = parseInt(currentNumber).toLocaleString('et');
+    numberField.innerText = parseFloat(currentNumber).toLocaleString(getLang(), { minimumFractionDigits: 0, maximumFractionDigits: 20 });
+    console.log(numberField.innerText);
 }
 
+function makePercentage() {
+    currentNumber = currentNumber / 100;
+}
+
+const getLang = () => navigator.language || navigator.browserLanguage || (navigator.languages || ["en"]) [0]
