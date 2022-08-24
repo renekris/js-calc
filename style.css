@@ -1,12 +1,7 @@
 html {
     box-sizing: border-box;
     background-color: #31373b;
-
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    user-select: text;
 }
 
 *,
@@ -52,6 +47,9 @@ body {
     display: flex;
     align-items: center;
     flex-flow: row-reverse nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #controls {

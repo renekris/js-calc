@@ -13,12 +13,12 @@ function buttonClicked(e) {
     const input = e.target.getAttribute('data-input');
     if (operands.includes(input)) {
         if (!dataEntered) {
-            if (input === 0) return
+            if (input == '0') return
             dataEntered = true;
             currentNumber = input;
-        } else if (dataEntered && currentNumber <= Number.MAX_SAFE_INTEGER && currentNumber >= Number.MIN_SAFE_INTEGER) {
+        } else if (dataEntered) {
             currentNumber += input;
-        };
+        }
         updateDisplay();
     } else if (operators.includes(input)) {
         calculateData(input);
@@ -59,11 +59,7 @@ function negateNumber() {
 }
 
 function updateDisplay() {
-    const getLang = () => navigator.language || navigator.browserLanguage || (navigator.languages || ["en"]) [0]
-    numberField.innerText = parseFloat(currentNumber).toLocaleString(getLang(), { minimumFractionDigits: 0, maximumFractionDigits: 20 });
-    if (currentNumber >= Number.MAX_SAFE_INTEGER) {
-        currentNumber = parseFloat(currentNumber);
-    }
+    numberField.innerText = numberWithSpaces(currentNumber);
     console.log(parseFloat(currentNumber))
     console.log(currentNumber);
 }
@@ -77,4 +73,10 @@ function addDot() {
         dataEntered = true;
         currentNumber += '.';
     }
+}
+
+function numberWithSpaces(x) {
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return parts.join(".");
 }
