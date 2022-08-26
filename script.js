@@ -46,7 +46,7 @@ function buttonClicked(input) {
         }
         updateDisplay();
     } else if (operators.includes(input)) {
-        if (secondOperand === null) {
+        if (firstOperand !== null && secondOperand === null) {
             if (input === 'equals') return;
             firstOperand = displayNum;
             firstOperator = input;
@@ -56,6 +56,7 @@ function buttonClicked(input) {
             if (input === 'equals') {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);
             } else {
+                displayNum = operate(firstOperand, secondOperand, firstOperator);
                 clearMemory();
                 if (displayNum === 'BZzT! Error!') return;
                 firstOperand = displayNum;
