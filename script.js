@@ -46,6 +46,7 @@ function buttonClicked(e) {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);
             } else {
                 clearMemory();
+                if (displayNum === 'BZzT! Error!') return;
                 firstOperand = displayNum;
                 firstOperator = input;
             }
