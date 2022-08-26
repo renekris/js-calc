@@ -1,4 +1,4 @@
-const buttons = document.getElementsByClassName('button');
+const buttons = Array.from(document.getElementsByClassName('button'));
 const numberField = document.getElementById('display');
 const operands = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 const operandFunctions = ['clear', 'plus-minus', 'percentage', 'dot']
@@ -9,7 +9,7 @@ let secondOperand = null;
 let secondOperator = null;
 let displayNum = 0;
 
-Array.from(buttons).forEach(element => {
+buttons.forEach(element => {
     element.addEventListener('pointerup', e => {
         const element = e.target.getAttribute('data-input');
         inputButton(element);
@@ -41,14 +41,16 @@ function inputButton(input) {
                     firstOperand += input;
                 } else firstOperand = input;
             } else {
-                firstOperand += input;
+                displayNum += input;
+                firstOperand = displayNum;
             }
             displayNum = firstOperand;
         } else if (secondOperator === null) {
             if (secondOperand === null) {
                 secondOperand = input;
             } else {
-                secondOperand += input;
+                displayNum += input;
+                secondOperand = displayNum;
             }
             displayNum = secondOperand;
         }
