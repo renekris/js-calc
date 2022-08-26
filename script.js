@@ -18,14 +18,14 @@ buttons.forEach(element => {
     // element.addEventListener('transitionend', removeAnimation)
 });
 
-
 window.addEventListener('keydown', keyboardInput)
 
 function keyboardInput(e) {
-    const key = document.querySelector(`button[data-key*="${e.keyCode}"]`)
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`)
     if (!key) return;
-    console.log(e.keyCode);
-    key.classList.add('pressing');
+    console.log(e);
+    // key.classList.add('pressing');
+    key.focus();
     inputButton(key.getAttribute('data-input'));
 }
 
@@ -43,7 +43,6 @@ function inputButton(input) {
     if (operands.includes(input)) {
         if (firstOperator === null) {
             if (firstOperand === null) {
-                if (input == '0') return;
                 if (displayNum.toString().includes('.')) {
                     firstOperand = displayNum;
                     firstOperand += input;
@@ -69,12 +68,11 @@ function inputButton(input) {
             firstOperand = displayNum;
             firstOperator = input;
         } else if (secondOperand !== null) {
-            secondOperand = displayNum;
             secondOperator = input;
             if (input === 'equals') {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);
+                firstOperand = displayNum;
             } else {
-                displayNum = operate(firstOperand, secondOperand, firstOperator);
                 clearMemory();
                 if (displayNum === 'BZzT! Error!') return;
                 firstOperand = displayNum;
@@ -146,6 +144,7 @@ function addDot() {
     if (Number.isInteger(parseFloat(displayNum))
     && !displayNum.toString().includes('.')
     && (firstOperand !== null || secondOperand === null)
+    && secondOperator === null
     ) {
         displayNum += '.';
     }
