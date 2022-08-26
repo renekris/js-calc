@@ -36,11 +36,11 @@ function buttonClicked(e) {
         }
         updateDisplay();
     } else if (operators.includes(input)) {
-        if (firstOperator === null) {
+        if (secondOperand === null) {
             if (input === 'equals') return;
             firstOperand = displayNum;
             firstOperator = input;
-        } else {
+        } else if (secondOperand !== null) {
             secondOperator = input;
             if (input === 'equals') {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);
