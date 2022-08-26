@@ -1,8 +1,8 @@
 const buttons = document.getElementsByClassName('button');
+const numberField = document.getElementById('display');
 const operands = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 const operandFunctions = ['clear', 'plus-minus', 'percentage', 'dot']
 const operators = ['divide', 'multiply', 'subtract', 'add', 'equals']
-const numberField = document.getElementById('display');
 let firstOperand = null;
 let firstOperator = null;
 let secondOperand = null;
@@ -10,11 +10,21 @@ let secondOperator = null;
 let displayNum = 0;
 
 Array.from(buttons).forEach(element => {
-    element.addEventListener('pointerup', e => buttonClicked(e));
+    element.addEventListener('pointerup', e => {
+        buttonClicked(e.target.getAttribute('data-input'));
+    });
 });
 
-function buttonClicked(e) {
-    const input = e.target.getAttribute('data-input');
+window.addEventListener('keydown', keyboardInput)
+
+function keyboardInput(e) {
+    const key = document.querySelector(`button[data-key*="${e.keyCode}"]`)
+    console.log(key);
+    key.classList.add('pressing');
+    buttonClicked(key.getAttribute('data-input'))
+}
+
+function buttonClicked(input) {
     if (operands.includes(input)) {
         if (firstOperator === null) {
             if (firstOperand === null) {
