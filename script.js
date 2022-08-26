@@ -21,14 +21,16 @@ function buttonClicked(e) {
                 if (input == '0') return;
                 firstOperand = input;
             } else {
-                firstOperand += input;
+                displayNum += input;
+                firstOperand = displayNum;
             }
             displayNum = firstOperand;
         } else if (secondOperator === null) {
             if (secondOperand === null) {
                 secondOperand = input;
             } else {
-                secondOperand += input;
+                displayNum += input;
+                secondOperand = displayNum;
             }
             displayNum = secondOperand;
         }
@@ -89,22 +91,6 @@ function operate(firstNumber, secondNumber, operator) {
     }
 }
 
-function selectOperator(operator) {
-    // if (isFirstOperand) {
-    //     numTempOne = numCurrent;
-    //     isFirstOperand = false;
-    //     isDataEntered = false;
-    //     updateDisplay();
-    // } else if (!isFirstOperand) {
-    //     numTempTwo = numCurrent;
-    //     isFirstOperand = true;
-    //     isDataEntered = false;
-    //     numCurrent = operate(numTempOne, numTempTwo, operator);
-    //     updateDisplay();
-    // }
-
-}
-
 function clearMemory() {
     firstOperand = null;
     firstOperator = null;
@@ -118,8 +104,7 @@ function addNegate() {
 
 function updateDisplay() {
     numberField.innerText = numberWithSpaces(displayNum);
-    console.log(parseFloat(displayNum))
-    console.log(displayNum);
+    console.log(`Type = ${typeof displayNum}\n${displayNum}`);
 }
 
 function addPercentage() {
