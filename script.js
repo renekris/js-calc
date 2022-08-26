@@ -41,6 +41,7 @@ function buttonClicked(e) {
             firstOperand = displayNum;
             firstOperator = input;
         } else if (secondOperand !== null) {
+            secondOperand = displayNum;
             secondOperator = input;
             if (input === 'equals') {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);

@@ -94,6 +94,14 @@ body {
     color: #fff;
 }
 
+.button[data-input="divide"]:focus,
+.button[data-input="multiply"]:focus,
+.button[data-input="subtract"]:focus,
+.button[data-input="add"]:focus {
+    background-color: #151d29;
+    color: white;
+}
+
 .button.wide {
     flex: 2;
 }
