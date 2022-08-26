@@ -11,7 +11,9 @@ let displayNum = 0;
 
 Array.from(buttons).forEach(element => {
     element.addEventListener('pointerup', e => {
-        buttonClicked(e.target.getAttribute('data-input'));
+        const element = e.target.getAttribute('data-input');
+        inputButton(element);
+        inputAnimation(element);
     });
 });
 
@@ -19,28 +21,34 @@ window.addEventListener('keydown', keyboardInput)
 
 function keyboardInput(e) {
     const key = document.querySelector(`button[data-key*="${e.keyCode}"]`)
-    console.log(key);
+    if (!key) return;
+    console.log(e.keyCode);
     key.classList.add('pressing');
-    buttonClicked(key.getAttribute('data-input'))
+    inputButton(key.getAttribute('data-input'));
 }
 
-function buttonClicked(input) {
+function inputAnimation(element) {
+    // element.classList.add('pressing');
+}
+
+function inputButton(input) {
     if (operands.includes(input)) {
         if (firstOperator === null) {
             if (firstOperand === null) {
                 if (input == '0') return;
-                firstOperand = input;
+                if (displayNum.toString().includes('.')) {
+                    firstOperand = displayNum;
+                    firstOperand += input;
+                } else firstOperand = input;
             } else {
-                displayNum += input;
-                firstOperand = displayNum;
+                firstOperand += input;
             }
             displayNum = firstOperand;
         } else if (secondOperator === null) {
             if (secondOperand === null) {
                 secondOperand = input;
             } else {
-                displayNum += input;
-                secondOperand = displayNum;
+                secondOperand += input;
             }
             displayNum = secondOperand;
         }
