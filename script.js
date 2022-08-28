@@ -17,14 +17,19 @@ buttons.forEach(element => {
 });
 
 window.addEventListener('keydown', keyboardInput)
+window.addEventListener('keyup', keyboardInput)
 
 function keyboardInput(e) {
     const key = document.querySelector(`button[data-key="${e.keyCode}"]`)
     if (!key) return;
-    console.log(e);
-    // key.classList.add('pressing');
-    key.focus();
-    inputButton(key.getAttribute('data-input'));
+    if (e.type === 'keydown') {
+        key.classList.add('pressing');
+        console.log(e);
+    } else if (e.type === 'keyup') {
+        key.classList.remove('pressing');
+        inputButton(key.getAttribute('data-input'));
+        console.log(e);
+    }
 }
 
 function inputButton(input) {
