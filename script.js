@@ -75,8 +75,7 @@ function operandFunctionSwitch(operandFunction) {
     switch (operandFunction) {
         case 'clear':
             clearMemory();
-            clearDisplay();
-            updateDisplay();
+            clearUpdateDisplay();
             break;
         case 'plus-minus':
             addNegate()
@@ -93,7 +92,7 @@ function operandFunctionSwitch(operandFunction) {
     }
 }
 
-function clearDisplay() {
+function clearUpdateDisplay() {
     displayNum = 0;
     updateDisplay();
 }
