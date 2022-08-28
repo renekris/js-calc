@@ -13,9 +13,7 @@ buttons.forEach(element => {
     element.addEventListener('pointerup', e => {
         const element = e.target.getAttribute('data-input');
         inputButton(element);
-        // inputAnimation(e);
     });
-    // element.addEventListener('transitionend', removeAnimation)
 });
 
 window.addEventListener('keydown', keyboardInput)
@@ -28,16 +26,6 @@ function keyboardInput(e) {
     key.focus();
     inputButton(key.getAttribute('data-input'));
 }
-
-// function removeAnimation(e) {
-//     if (e.propertyName !== 'transform') return;
-//     console.log(e);
-//     e.target.classList.remove('pressing');
-// }
-
-// function inputAnimation(e) {
-//     e.target.classList.add('pressing');
-// }
 
 function inputButton(input) {
     if (operands.includes(input)) {
