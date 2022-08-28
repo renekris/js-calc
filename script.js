@@ -24,11 +24,9 @@ function keyboardInput(e) {
     if (!key) return;
     if (e.type === 'keydown') {
         key.classList.add('pressing');
-        console.log(e);
     } else if (e.type === 'keyup') {
         key.classList.remove('pressing');
         inputButton(key.getAttribute('data-input'));
-        console.log(e);
     }
 }
 
