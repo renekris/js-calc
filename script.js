@@ -7,6 +7,7 @@ let firstOperand = null;
 let firstOperator = null;
 let secondOperand = null;
 let secondOperator = null;
+let usedEquals = false;
 let displayNum = 0;
 
 buttons.forEach(element => {
@@ -63,6 +64,13 @@ function inputButton(input) {
             if (input === 'equals') {
                 displayNum = operate(firstOperand, secondOperand, firstOperator);
                 firstOperand = displayNum;
+                usedEquals = true;
+            } else if (!usedEquals) {
+                displayNum = operate(firstOperand, secondOperand, firstOperator);
+                clearMemory();
+                if (displayNum === 'BZzT! Error!') return;
+                firstOperand = displayNum;
+                firstOperator = input;
             } else {
                 clearMemory();
                 if (displayNum === 'BZzT! Error!') return;
