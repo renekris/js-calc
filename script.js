@@ -71,6 +71,7 @@ function inputButton(input) {
                 if (displayNum === 'BZzT! Error!') return;
                 firstOperand = displayNum;
                 firstOperator = input;
+                usedEquals = false;
             } else {
                 clearMemory();
                 if (displayNum === 'BZzT! Error!') return;
@@ -123,6 +124,7 @@ function clearMemory() {
     firstOperator = null;
     secondOperand = null;
     secondOperator = null;
+    usedEquals = false;
 }
 
 function addNegate() {
