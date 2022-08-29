@@ -1,5 +1,6 @@
 const buttons = Array.from(document.getElementsByClassName('button'));
 const numberField = document.getElementById('display');
+const darkModeToggleButton = document.getElementById('dark-mode-toggle');
 const operands = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 const operandFunctions = ['clear', 'plus-minus', 'percentage', 'dot']
 const operators = ['divide', 'multiply', 'subtract', 'add', 'equals']
@@ -16,6 +17,20 @@ buttons.forEach(element => {
         inputButton(element);
     });
 });
+
+darkModeToggleButton.addEventListener('pointerdown', darkMode)
+
+function darkMode() {
+    const body = document.body;
+    const container = document.getElementById('container');
+    buttons.forEach(element => {
+        element.classList.toggle('dark-mode-buttons');
+        element.parentElement.classList.toggle('dark-mode-content');
+    });
+
+    body.classList.toggle('dark-mode');
+    container.classList.toggle('dark-mode');
+}
 
 window.addEventListener('keydown', keyboardInput)
 window.addEventListener('keyup', keyboardInput)
