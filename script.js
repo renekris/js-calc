@@ -1,6 +1,7 @@
 const buttons = Array.from(document.getElementsByClassName('button'));
 const numberField = document.getElementById('display');
 const darkModeToggleButton = document.getElementById('dark-mode-toggle');
+const audioToggleButton = document.getElementById('audio-toggle');
 const operands = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 const operandFunctions = ['clear', 'plus-minus', 'percentage', 'dot']
 const operators = ['divide', 'multiply', 'subtract', 'add', 'equals']
@@ -9,18 +10,21 @@ let firstOperator = null;
 let secondOperand = null;
 let secondOperator = null;
 let usedEquals = false;
+let hasSounds = false;
 let displayNum = 0;
 
 buttons.forEach(element => {
     element.addEventListener('pointerup', e => {
         const element = e.target.getAttribute('data-input');
+        if (hasSounds) playSound();
         inputButton(element);
     });
 });
 
-darkModeToggleButton.addEventListener('pointerdown', darkMode)
+darkModeToggleButton.addEventListener('pointerup', e => darkMode(e))
+audioToggleButton.addEventListener('pointerup', e => typingSounds(e))
 
-function darkMode() {
+function darkMode(e) {
     const body = document.body;
     const container = document.getElementById('container');
     buttons.forEach(element => {
@@ -30,16 +34,33 @@ function darkMode() {
 
     body.classList.toggle('dark-mode');
     container.classList.toggle('dark-mode');
+    e.target.classList.toggle('button-green');
+}
+
+function typingSounds(e) {
+    hasSounds = !hasSounds;
+    e.target.classList.toggle('button-green');
 }
 
 window.addEventListener('keydown', keyboardInput)
 window.addEventListener('keyup', keyboardInput)
+
+function playSound() {
+    const audio = document.querySelector('audio');
+    audio.currentTime = 0;
+    audio.playbackRate = randomNumberBetween(4, 15);
+    audio.preservesPitch = false;
+    audio.play();
+}
+
+const randomNumberBetween = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 function keyboardInput(e) {
     const key = document.querySelector(`button[data-key="${e.keyCode}"]`)
     if (!key) return;
     if (e.type === 'keydown') {
         key.classList.add('pressing');
+        if (hasSounds) playSound();
     } else if (e.type === 'keyup') {
         key.classList.remove('pressing');
         inputButton(key.getAttribute('data-input'));

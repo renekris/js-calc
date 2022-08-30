@@ -156,6 +156,10 @@ body {
     border-radius: 5px;
 }
 
+.button-green {
+    color: #00ff15!important;
+}
+
 #footer {
     width: 100%;
     display: flex;
@@ -165,7 +169,7 @@ body {
     margin-top: auto;
 }
 
-#dark-mode-toggle {
+#footer button {
     background-color: #000000;
     color: white;
     user-select: none;
@@ -173,6 +177,8 @@ body {
     border: none;
     font-size: large;
     padding: 0.5%;
+    border-left: solid 1px white;
+    border-right: solid 1px white;
 }
 
 .dark-mode {
