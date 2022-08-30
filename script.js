@@ -129,7 +129,7 @@ function operate(firstNumber, secondNumber, operator) {
     if (operator === 'subtract') return parseFloat(firstNumber) - parseFloat(secondNumber);
     if (operator === 'multiply') return parseFloat(firstNumber) * parseFloat(secondNumber);
     if (operator === 'divide') {
-        if (firstNumber === 0 || secondNumber === 0) return 'BZzT! Error!';
+        if (firstNumber === '0' || secondNumber === '0') return 'BZzT! Error!';
         else return parseFloat(firstNumber) / parseFloat(secondNumber);
     }
 }
