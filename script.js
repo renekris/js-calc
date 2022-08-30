@@ -11,6 +11,7 @@ let secondOperand = null;
 let secondOperator = null;
 let usedEquals = false;
 let hasSounds = false;
+let isDark = false;
 let displayNum = 0;
 
 buttons.forEach(element => {
@@ -31,6 +32,8 @@ function darkMode(e) {
         element.classList.toggle('dark-mode-buttons');
         element.parentElement.classList.toggle('dark-mode-content');
     });
+
+    isDark = !isDark;
 
     body.classList.toggle('dark-mode');
     container.classList.toggle('dark-mode');
@@ -60,10 +63,13 @@ function keyboardInput(e) {
     const key = document.querySelector(`button[data-key="${e.keyCode}"]`)
     if (!key) return;
     if (e.type === 'keydown') {
-        key.classList.add('pressing');
+        if (isDark) key.classList.add('pressing-dark');
+        else key.classList.add('pressing');
+
         if (hasSounds) playSound();
     } else if (e.type === 'keyup') {
-        key.classList.remove('pressing');
+        if (isDark) key.classList.remove('pressing-dark');
+        else key.classList.remove('pressing');
         inputButton(key.getAttribute('data-input'));
     }
 }

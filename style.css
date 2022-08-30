@@ -201,12 +201,23 @@ body {
 
 .dark-mode-buttons {
     background-color: #ddddee!important;
+    box-shadow: inset 0 0.2vmin 0 #929AAB, 0 0.7vh 0 #474A56;
     color: black!important;
-    box-shadow: inset 0 0.2vmin 0 #929AAB, inset 0 -0.35vh 0 #474A56!important;
     content: none !important;
+}
+
+.dark-mode-buttons:active,
+.pressing-dark,
+.button[data-input="divide"][class*="dark-mode-buttons"]:focus,
+.button[data-input="multiply"][class*="dark-mode-buttons"]:focus,
+.button[data-input="subtract"][class*="dark-mode-buttons"]:focus,
+.button[data-input="add"][class*="dark-mode-buttons"]:focus {
+    top: 0.7vh!important;
+    box-shadow: inset 0 0.2vmin 0 #929AAB, inset 0 -0.35vh 0 #474A56!important;
+    background-color: #b4b4b4!important;
 }
 
 .dark-mode-content::after {
     background-color: #000!important;
-    box-shadow: inset 0 0.2vmin 0 #929AAB, inset 0 -0.35vh 0 #0B0B0D;
+    box-shadow: inset 0 0.2vmin 0 #929AAB, inset 0 -0.35vh 0 #0B0B0D!important;
 }
