@@ -34,6 +34,7 @@ function darkMode(e) {
 
     body.classList.toggle('dark-mode');
     container.classList.toggle('dark-mode');
+    numberField.classList.toggle('dark-mode-display');
     e.target.classList.toggle('button-green');
 }
 
